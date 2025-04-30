@@ -48,6 +48,7 @@ const App = () => {
       age: 0,
       favoriteFoods: [],
     });
+    setIsShowGreeting(false);
   };
 
   return (
@@ -162,9 +163,11 @@ const App = () => {
           Hello {formData.firstname} {formData.lastname}. You are {formData.age}{" "}
           years old and your favorie foods are:
           {formData.favoriteFoods.map((food, index) => (
-            <span key={index}>{food}, </span>
+            <span key={index}>
+              {food}
+              {formData.favoriteFoods.length - 1 === index ? "." : ", "}
+            </span>
           ))}
-          .
         </div>
       ) : null}
     </div>
