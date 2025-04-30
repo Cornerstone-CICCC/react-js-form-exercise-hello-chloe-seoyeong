@@ -19,7 +19,7 @@ const App = () => {
   });
 
   const handleDisplay = () => {
-    setIsShowGreeting(true);
+    setIsShowGreeting(!isShowGreeting);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -53,7 +53,15 @@ const App = () => {
   return (
     <div>
       <h1>User Form</h1>
-      <form>
+      <form
+        style={{
+          display: "flex",
+          gap: ".5rem",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          marginBottom: "1rem",
+        }}
+      >
         <div>
           <label htmlFor="firstname">First Name:</label>
           <input
@@ -84,7 +92,7 @@ const App = () => {
             value={formData.age}
           />
         </div>
-        <div>
+        <div style={{ display: "flex", gap: ".5rem" }}>
           <label>Favorite Foods:</label>
           <div>
             <input
@@ -144,11 +152,13 @@ const App = () => {
         </div>
       </form>
 
-      <button onClick={handleDisplay}>Display User</button>
+      <button onClick={handleDisplay}>
+        {isShowGreeting ? "Hide" : "Display"} User
+      </button>
       <button onClick={handleClear}>Clear</button>
 
       {isShowGreeting ? (
-        <div className="output">
+        <div className="output" style={{ marginTop: "1rem" }}>
           Hello {formData.firstname} {formData.lastname}. You are {formData.age}{" "}
           years old and your favorie foods are:
           {formData.favoriteFoods.map((food, index) => (
